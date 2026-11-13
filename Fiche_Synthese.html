@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="M. DIAKHO - Lycée Professionnel | Académie de Versailles">
+    <title>Fiche Synthèse Ressource : Analyse Fonctionnelle du Convoyeur | Bac Pro MELEC</title>
+    <style>
+        /* =========================================================================
+           STYLE GLOBAL FICHE SYNTHÈSE RESSOURCE A4 (4 PAGES AÉRÉES STRICTES)
+           Police principale : Arial, taille 14px de base
+           Thème Bleu Industriel & Électromécanique (#1e3a8a / #2563eb / #0284c7)
+           Norme graphique : zéro émoji, illustrations HD, mise en page équilibrée
+           ========================================================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 16px;
+            background-color: #525659;
+            color: #1e293b;
+            line-height: 1.45;
+        }
+
+        /* Barre d'action supérieure (Écran uniquement) */
+        .actions-bar {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin: 0 auto 20px auto;
+            max-width: 210mm;
+        }
+
+        .actions-bar .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .actions-bar .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .actions-bar .btn-secondary {
+            background: #475569;
+        }
+
+        .actions-bar .btn-secondary:hover {
+            background: #334155;
+        }
+
+        /* Format A4 Certifié Strict (210mm x 297mm) */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto 24px auto;
+            background: white;
+            padding: 7mm 11mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* En-tête officiel académique */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1.5px solid #1e3a8a;
+            margin-bottom: 7px;
+        }
+
+        .header-table td {
+            padding: 5px 9px;
+            vertical-align: middle;
+            border: 1px solid #cbd5e1;
+        }
+
+        .header-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 13.5px;
+            color: #1e3a8a;
+            background: #eef3fc;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+        }
+
+        .header-sub {
+            display: block;
+            font-size: 11.5px;
+            color: #475569;
+            font-weight: normal;
+            margin-top: 2px;
+            text-transform: none;
+        }
+
+        /* Boîtes techniques */
+        .card-box {
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 7px;
+        }
+
+        .card-box h3 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #1e3a8a;
+            border-bottom: 1.5px solid #93c5fd;
+            padding-bottom: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .guide-tag {
+            font-size: 11px;
+            font-weight: bold;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 7px;
+            border-radius: 4px;
+            border: 1px solid #7dd3fc;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* Grilles fluides */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 9px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .mini-card {
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 5px;
+            padding: 7px 10px;
+        }
+
+        .mini-card h4 {
+            margin: 0 0 3px 0;
+            font-size: 13.5px;
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+
+        .mini-card p {
+            margin: 0;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.45;
+        }
+
+        /* Cadres images techniques */
+        .img-frame {
+            border: 1.5px solid #94a3b8;
+            border-radius: 6px;
+            padding: 5px;
+            background: #f8fafc;
+            text-align: center;
+            margin: 6px 0;
+        }
+
+        .img-frame img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            font-weight: bold;
+            color: #475569;
+            margin-top: 3px;
+        }
+
+        /* Tableaux techniques */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .tech-table th, .tech-table td {
+            border: 1px solid #cbd5e1;
+            padding: 5px 8px;
+            text-align: left;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        .tech-table th {
+            background: #eef3fc;
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Badges de flux M.E.I. */
+        .badge-tag {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-matiere { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        .badge-energie { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+        .badge-info { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+
+        /* Pied de page */
+        .page-footer {
+            margin-top: auto;
+            padding-top: 3px;
+            border-top: 1px solid #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* Impression certifiée A4 (4 pages sans saut intempestif) */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .actions-bar {
+                display: none !important;
+            }
+            .a4-page {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                padding: 6.5mm 10mm !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barre d'actions supérieure (Écran uniquement) -->
+    <div class="actions-bar">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-weight: bold; font-size: 15px; color: #60a5fa; letter-spacing: 0.5px;">FICHE SYNTHÈSE RESSOURCE</span>
+            <span style="font-size: 13.5px; color: #94a3b8;">Séance 1 : Analyse Fonctionnelle Externe & Typologie des Flux</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <a href="TD1_Convoyeur bi-courroies.html" class="btn btn-secondary">Retour au TD</a>
+            <a href="Fiche Synthèse Convoyeur _ séance 1.pdf" target="_blank" class="btn" style="background: #059669;">Télécharger Fiche + Nomenclature (5 pages PDF)</a>
+            <button onclick="window.print()" class="btn">Imprimer Fiche (4 pages A4)</button>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PAGE 1 / 4 : PRÉSENTATION INDUSTRIELLE & DONNÉES TECHNIQUES DU SYSTÈME
+         ========================================================================= -->
+    <div class="a4-page">
+        <div>
+            <!-- En-tête officiel académique -->
+            <table class="header-table">
+                <tr>
+                    <td style="width: 25%; font-weight: bold; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        Lycée Professionnel<br>
+                        <span style="color: #1e3a8a; font-size: 11px;">Académie de Versailles</span><br>
+                        <span style="color: #047857; font-weight: bold; font-size: 11px;">BAC PRO MELEC</span>
+                    </td>
+                    <td style="width: 50%;" class="header-title">
+                        Fiche Synthèse Ressource : Analyse Fonctionnelle Externe<br>
+                        <span class="header-sub">Présentation Industrielle, Données Techniques & Chaîne Cinématique</span>
+                    </td>
+                    <td style="width: 25%; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        <strong>M. DIAKHO</strong><br>
+                        <span style="font-size: 11px; color: #475569;">Construction Mécanique</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Section 1 : Description du Système et Rôle en Ligne de Production -->
+            <div class="card-box" style="border-left: 4px solid #1e3a8a;">
+                <h3>
+                    <span>1. Présentation du Système Étudié : Convoyeur Bi-courroies Plates</span>
+                    <span class="guide-tag">Dossier Technique DT1</span>
+                </h3>
+                <p style="margin: 0 0 6px 0; font-size: 14px; color: #334155; line-height: 1.45;">
+                    Le <strong>convoyeur industriel bi-courroies plates</strong> est un équipement automatisé de manutention continue. Il assure le transit horizontal automatisé de colis et cartons entre différents postes de travail d'un atelier logistique ou d'une ligne de conditionnement.
+                </p>
+
+                <div class="grid-4" style="margin-top: 6px;">
+                    <div class="mini-card" style="border-top: 3px solid #2563eb;">
+                        <h4 style="color: #1e3a8a;">Actionneur</h4>
+                        <p><strong>Motoréducteur Leroy-Somer</strong> : moteur asynchrone triphasé accouplé à un réducteur irréversible à roue et vis sans fin pour réduire la vitesse et démultiplier le couple moteur.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #b45309;">
+                        <h4 style="color: #b45309;">Alimentation</h4>
+                        <p>Raccordement sur le <strong>réseau électrique triphasé 400 V / 50 Hz</strong>. Pilotage de la vitesse par un variateur de vitesse électronique modulant la fréquence d'alimentation.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #0284c7;">
+                        <h4 style="color: #0284c7;">Transmission</h4>
+                        <p>Transmission intermédiaire par poulie motrice et <strong>courroie crantée</strong> entraînant les arbres et rouleaux des <strong>deux courroies plates</strong> transporteuses.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #15803d;">
+                        <h4 style="color: #15803d;">Pupitre & Commandes</h4>
+                        <p>Pupitre opérateur équipé d'un bouton-poussoir <strong>Marche</strong>, d'un <strong>Arrêt d'urgence coup de poing</strong>, d'un commutateur de mode et d'un <strong>voyant vert</strong> de signalisation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Illustration HD du Convoyeur (DT1) -->
+            <div class="img-frame" style="margin-top: 6px; padding: 5px;">
+                <img src="img/dt1_ensemble.png" alt="Vue d'ensemble du convoyeur industriel bi-courroies plates" style="max-height: 290px; width: auto; object-fit: contain;">
+                <div class="img-caption">
+                    Figure 1 : Vue d'ensemble du convoyeur industriel bi-courroies plates (Plan d'ensemble DT1)
+                </div>
+            </div>
+
+            <!-- Fiche Caractéristiques Constructeur Spacieuse -->
+            <div class="card-box" style="border-left: 4px solid #0284c7; margin-bottom: 0;">
+                <h3>
+                    <span>Données Techniques Constructeur & Environnement d'Exploitation</span>
+                    <span class="guide-tag">Données d'Exploitation</span>
+                </h3>
+                <div class="grid-2">
+                    <div class="mini-card" style="background: #f1f5f9;">
+                        <h4 style="color: #1e3a8a;">Données d'Exploitation Mécanique :</h4>
+                        <p>• Charges transportées : colis et bacs industriels jusqu'à 30 kg en transit continu.<br>
+                        • Vitesse d'avance des courroies : réglable de 0,1 m/s à 0,6 m/s.<br>
+                        • Dispositif de tension : vis de réglage de tension agissant sur les paliers mobiles.</p>
+                    </div>
+                    <div class="mini-card" style="background: #f1f5f9;">
+                        <h4 style="color: #1e3a8a;">Conditions Ambiantes de l'Atelier :</h4>
+                        <p>• Environnement avec présence continue de poussières de découpe de carton.<br>
+                        • Conditions de propreté et maintenance : lavage périodique des carters extérieurs à l'éponge et au jet d'eau basse pression.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 1 -->
+        <div class="page-footer">
+            <span>Bac Pro MELEC — Fiche Synthèse Ressource Construction Mécanique</span>
+            <span>Page 1 / 4 — Présentation Industrielle & Données Techniques du Système</span>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PAGE 2 / 4 : MODÉLISATION FONCTIONNELLE SADT [A-0] (APPROCHE BOÎTE NOIRE)
+         ========================================================================= -->
+    <div class="a4-page">
+        <div>
+            <!-- En-tête officiel académique -->
+            <table class="header-table">
+                <tr>
+                    <td style="width: 25%; font-weight: bold; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        Lycée Professionnel<br>
+                        <span style="color: #1e3a8a; font-size: 11px;">Académie de Versailles</span><br>
+                        <span style="color: #047857; font-weight: bold; font-size: 11px;">BAC PRO MELEC</span>
+                    </td>
+                    <td style="width: 50%;" class="header-title">
+                        Fiche Synthèse Ressource : Analyse Fonctionnelle Externe<br>
+                        <span class="header-sub">Modélisation SADT [A-0] & Principes de l'Approche « Boîte Noire »</span>
+                    </td>
+                    <td style="width: 25%; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        <strong>M. DIAKHO</strong><br>
+                        <span style="font-size: 11px; color: #475569;">Construction Mécanique</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Section 2 : Principes de la Modélisation SADT Niveau [A-0] -->
+            <div class="card-box" style="border-left: 4px solid #0284c7; padding: 12px 14px;">
+                <h3>
+                    <span>2. Principes de la Modélisation SADT Niveau [A-0] (Approche Boîte Noire)</span>
+                    <span class="guide-tag">Méthodologie — Questions 1, 3.1 & 4</span>
+                </h3>
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: #334155; line-height: 1.55;">
+                    L'actigramme SADT [A-0] modélise la fonction globale du système en approche <strong>« boîte noire »</strong>. Il représente le service rendu en associant la matière d'œuvre entrante (Ei), la fonction globale exercée, la matière d'œuvre sortante (Ef) et les contraintes qui pilotent l'opération sans entrer dans le détail mécanique interne :
+                </p>
+
+                <!-- Schéma conceptuel SADT Aéré -->
+                <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 6px; padding: 16px 20px; margin: 12px 0; text-align: center;">
+                    <div style="font-size: 13px; font-weight: bold; color: #475569; margin-bottom: 10px; text-transform: uppercase;">
+                        Données de Contrôle : Énergie (W) &bull; Configuration (C) &bull; Réglage (R) &bull; Exploitation (E) &darr;
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px;">
+                        <div style="background: #e2e8f0; border: 1.5px dashed #64748b; padding: 12px; border-radius: 5px; font-size: 14px; width: 30%;">
+                            <strong>Matière d'Œuvre Entrante</strong><br>
+                            <span style="color: #1e40af; font-weight: bold;">État Initial (Ei)</span><br>
+                            <em>(Produit avant action)</em>
+                        </div>
+                        <div style="background: #1e3a8a; color: white; padding: 16px 14px; border-radius: 6px; font-size: 14.5px; font-weight: bold; width: 40%; line-height: 1.4;">
+                            FONCTION GLOBALE [A-0]<br>
+                            <span style="font-size: 12px; font-weight: normal; color: #93c5fd;">Transformation exercée sur le produit</span><br>
+                            Action utile apportée à la charge
+                        </div>
+                        <div style="background: #e2e8f0; border: 1.5px dashed #64748b; padding: 12px; border-radius: 5px; font-size: 14px; width: 30%;">
+                            <strong>Matière d'Œuvre Sortante</strong><br>
+                            <span style="color: #15803d; font-weight: bold;">État Final (Ef)</span><br>
+                            <em>(Produit après transfert + V.A.)</em>
+                        </div>
+                    </div>
+                    <div style="font-size: 13px; color: #64748b; margin-top: 10px; font-weight: bold;">
+                        Sous-système support : Nom de la machine réalisant la fonction
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 14px;">
+                    <div class="mini-card" style="border-left: 3.5px solid #2563eb; padding: 12px 14px;">
+                        <h4 style="color: #1e3a8a; font-size: 14.5px; margin-bottom: 5px;">Distinguer l'État Initial (Ei) et l'État Final (Ef) :</h4>
+                        <p style="font-size: 14px; line-height: 1.55;">
+                            • <strong>État Initial (Ei)</strong> : caractérise la position ou la situation du produit <em>avant</em> sa prise en charge par le système.<br>
+                            • <strong>État Final (Ef)</strong> : caractérise la position ou la situation du produit <em>après</em> son déplacement.<br>
+                            <em>Règle d'or :</em> décrivez l'état de la matière d'œuvre traitée, et non l'état des organes moteurs !
+                        </p>
+                    </div>
+                    <div class="mini-card" style="border-left: 3.5px solid #16a34a; padding: 12px 14px;">
+                        <h4 style="color: #16a34a; font-size: 14.5px; margin-bottom: 5px;">Définition de la Valeur Ajoutée (V.A.) :</h4>
+                        <p style="font-size: 14px; line-height: 1.55;">
+                            • C'est la modification utile d'état apportée à la matière d'œuvre entre son entrée et sa sortie.<br>
+                            • Dans les systèmes de convoyage et de manutention, la valeur ajoutée est purement spatiale (<strong>changement de lieu</strong> sans modification de la structure du produit).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 2 -->
+        <div class="page-footer">
+            <span>Bac Pro MELEC — Fiche Synthèse Ressource Construction Mécanique</span>
+            <span>Page 2 / 4 — Modélisation SADT [A-0] & Principes de la Boîte Noire</span>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PAGE 3 / 4 : DONNÉES DE CONTRÔLE (W, C, R, E) & TYPOLOGIE DES FLUX (M.E.I.)
+         ========================================================================= -->
+    <div class="a4-page">
+        <div>
+            <!-- En-tête officiel académique -->
+            <table class="header-table">
+                <tr>
+                    <td style="width: 25%; font-weight: bold; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        Lycée Professionnel<br>
+                        <span style="color: #1e3a8a; font-size: 11px;">Académie de Versailles</span><br>
+                        <span style="color: #047857; font-weight: bold; font-size: 11px;">BAC PRO MELEC</span>
+                    </td>
+                    <td style="width: 50%;" class="header-title">
+                        Fiche Synthèse Ressource : Analyse Fonctionnelle Externe<br>
+                        <span class="header-sub">Données de Contrôle (W, C, R, E) & Classification des Flux (M.E.I.)</span>
+                    </td>
+                    <td style="width: 25%; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        <strong>M. DIAKHO</strong><br>
+                        <span style="font-size: 11px; color: #475569;">Construction Mécanique</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Section 3 : Définition des Données de Contrôle W, C, R, E (Aide Q4) -->
+            <div class="card-box" style="border-left: 4px solid #b45309; padding: 10px 14px; margin-bottom: 10px;">
+                <h3>
+                    <span>3. Définition des Données de Contrôle et Contraintes (W, C, R, E)</span>
+                    <span class="guide-tag">Méthodologie — Question 4</span>
+                </h3>
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #334155; line-height: 1.5;">
+                    Les données de contrôle arrivent par le bord supérieur de la boîte [A-0]. Elles influencent, déclenchent ou brident le fonctionnement sans être transformées :
+                </p>
+                <div class="grid-4" style="margin-top: 6px;">
+                    <div class="mini-card" style="border-top: 3px solid #b45309; padding: 10px 10px;">
+                        <h4 style="color: #b45309;">&darr; Énergie (W)</h4>
+                        <p><strong>Work (Puissance)</strong> : la source d'énergie mécanique, électrique ou pneumatique indispensable pour actionner le moteur.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #1e40af; padding: 10px 10px;">
+                        <h4 style="color: #1e40af;">&darr; Configuration (C)</h4>
+                        <p><strong>Configuration de cycle</strong> : le choix du mode de fonctionnement (ex. cycle automatique continu, marche manuelle, cycle pas à pas).</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #4338ca; padding: 10px 10px;">
+                        <h4 style="color: #4338ca;">&darr; Réglage (R)</h4>
+                        <p><strong>Réglages techniques</strong> : les paramètres ajustés par les techniciens (vitesse de consigne, tension mécanique des bandes, temporisations).</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #15803d; padding: 10px 10px;">
+                        <h4 style="color: #15803d;">&darr; Exploitation (E)</h4>
+                        <p><strong>Consignes opérateur</strong> : ordres de mise en marche donnés par l'utilisateur et dispositifs d'arrêt d'urgence pour la sécurité des personnes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 : Typologie des Flux M.E.I. (Aide Q3.2) -->
+            <div class="card-box" style="border-left: 4px solid #15803d; padding: 10px 14px; margin-bottom: 0;">
+                <h3>
+                    <span>4. Classification des Flux : Matière, Énergie, Information (M.E.I.)</span>
+                    <span class="guide-tag">Méthodologie — Question 3.2</span>
+                </h3>
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #334155; line-height: 1.5;">
+                    Dans tout système automatisé industriel, les échanges entre les constituants et avec l'environnement extérieur se composent de <strong>trois grandes familles de flux</strong>. Savoir identifier et distinguer ces flux est une compétence fondamentale pour l'électrotechnicien :
+                </p>
+
+                <table class="tech-table" style="margin-top: 8px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%; padding: 8px 10px;">Famille de Flux</th>
+                            <th style="width: 46%; padding: 8px 10px;">Définition Physique & Rôle dans le Système</th>
+                            <th style="width: 34%; padding: 8px 10px;">Question Clé pour Décider</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px 10px;"><span class="badge-tag badge-matiere">Matière (M)</span></td>
+                            <td style="padding: 8px 10px;">Tout élément matériel, solide ou fluide, qui traverse le système pour être transformé, déplacé ou trié.</td>
+                            <td style="padding: 8px 10px;"><em>« Est-ce l'objet physique ou la marchandise qui subit l'action utile ? »</em></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 10px;"><span class="badge-tag badge-energie">Énergie (W / E)</span></td>
+                            <td style="padding: 8px 10px;">Grandeur physique de puissance (courant électrique fort, fluide sous pression) qui alimente les actionneurs.</td>
+                            <td style="padding: 8px 10px;"><em>« Cet élément fournit-il la force motrice pour actionner la mécanique ? »</em></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 10px;"><span class="badge-tag badge-info">Information (I)</span></td>
+                            <td style="padding: 8px 10px;">Signaux de commande, ordres opérateur, réglages de consigne, détection de capteurs ou voyants lumineux.</td>
+                            <td style="padding: 8px 10px;"><em>« Cet élément sert-il à donner un ordre, régler, surveiller ou signaler un état ? »</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer Page 3 -->
+        <div class="page-footer">
+            <span>Bac Pro MELEC — Fiche Synthèse Ressource Construction Mécanique</span>
+            <span>Page 3 / 4 — Données de Contrôle (W, C, R, E) & Classification des Flux (M.E.I.)</span>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PAGE 4 / 4 : NORME INDICE IP & GUIDE DE RÉDACTION TECHNIQUE
+         ========================================================================= -->
+    <div class="a4-page">
+        <div>
+            <!-- En-tête officiel académique -->
+            <table class="header-table">
+                <tr>
+                    <td style="width: 25%; font-weight: bold; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        Lycée Professionnel<br>
+                        <span style="color: #1e3a8a; font-size: 11px;">Académie de Versailles</span><br>
+                        <span style="color: #047857; font-weight: bold; font-size: 11px;">BAC PRO MELEC</span>
+                    </td>
+                    <td style="width: 50%;" class="header-title">
+                        Fiche Synthèse Ressource : Analyse Fonctionnelle Externe<br>
+                        <span class="header-sub">Indice de Protection IP (NF EN 60529) & Guide de Rédaction Technique Professionnelle</span>
+                    </td>
+                    <td style="width: 25%; font-size: 12px; background: #f8fafc; line-height: 1.35;">
+                        <strong>M. DIAKHO</strong><br>
+                        <span style="font-size: 11px; color: #475569;">Construction Mécanique</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Section 5 : Norme Indice de Protection IP (Aide Q5) -->
+            <div class="card-box" style="border-left: 4px solid #b45309; padding: 7px 11px; margin-bottom: 7px;">
+                <h3 style="margin: 0 0 4px 0; font-size: 14px;">
+                    <span>5. Norme des Indices de Protection des Enveloppes (Code IP — NF EN 60529)</span>
+                    <span class="guide-tag">Norme Officielle — Question 5</span>
+                </h3>
+                <p style="margin: 0 0 4px 0; font-size: 14px; color: #334155; line-height: 1.42;">
+                    Le code IP qualifie le niveau d'étanchéité d'une enveloppe de matériel électrique face à deux types d'agressions de son environnement d'atelier :
+                </p>
+
+                <div style="background: #f8fafc; border: 1.5px solid #3b82f6; border-radius: 5px; padding: 4px 10px; text-align: center; margin: 4px 0;">
+                    <span style="font-size: 14px; font-weight: bold; color: #1e3a8a; letter-spacing: 2px;">Structure du code : IP X Y</span> &nbsp;&mdash;&nbsp;
+                    <span style="font-size: 13px; color: #334155;"><strong>X</strong> = Solides & Poussières (0 à 6) &bull; <strong>Y</strong> = Liquides & Eau (0 à 8)</span>
+                </div>
+
+                <table class="tech-table" style="margin: 3px 0;">
+                    <thead>
+                        <tr>
+                            <th style="width: 9%; text-align: center; padding: 3.5px 6px; font-size: 13.5px;">Chiffre</th>
+                            <th style="width: 45.5%; padding: 3.5px 6px; font-size: 13.5px;">1er Chiffre X : Protection Solides & Poussières</th>
+                            <th style="width: 45.5%; padding: 3.5px 6px; font-size: 13.5px;">2ème Chiffre Y : Protection Liquides (Eau)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">0</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Pas de protection spéciale.</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Pas de protection spéciale.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">1</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre corps solides &gt; 50 mm (contact involontaire).</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre chutes verticales de gouttes d'eau (condensation).</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">2</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre corps solides &gt; 12,5 mm (doigt de la main).</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre chutes de gouttes d'eau jusqu'à 15° de la verticale.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">3</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre corps solides &gt; 2,5 mm (outils, fils épais).</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre l'eau en pluie jusqu'à 60° de la verticale.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">4</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre corps solides &gt; 1 mm (outils fins, petits fils).</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les projections d'eau de toutes directions.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">5</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les poussières (dépôts résiduels non nuisibles).</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les jets d'eau à la lance de toutes directions.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">6</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Totalement étanche à toute pénétration de poussières.</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les paquets de mer ou puissants jets d'eau.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">7</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">— (non applicable)</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les effets de l'immersion temporaire (1 m).</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold; padding: 3px 6px; font-size: 13.5px;">8</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">— (non applicable)</td>
+                            <td style="padding: 3px 6px; font-size: 13.5px;">Protégé contre les effets d'une immersion prolongée sous pression.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 6 : Méthodologie de Rédaction Professionnelle (Aide Q6) -->
+            <div class="card-box" style="border-left: 4px solid #4338ca; padding: 7px 11px; margin-bottom: 0;">
+                <h3 style="margin: 0 0 4px 0; font-size: 14px;">
+                    <span>6. Guide de Rédaction Technique pour l'Électrotechnicien</span>
+                    <span class="guide-tag">Méthodologie — Question 6</span>
+                </h3>
+                <p style="margin: 0 0 5px 0; font-size: 14px; color: #334155; line-height: 1.42;">
+                    En milieu professionnel, l'électrotechnicien doit formuler des synthèses techniques claires et rigoureuses. Une simple liste de mots isolés ne constitue pas une phrase : vous devez construire <strong>une phrase complète</strong> articulée autour des 4 piliers indispensables :
+                </p>
+
+                <div class="grid-4" style="gap: 7px;">
+                    <div class="mini-card" style="border-top: 3px solid #2563eb; padding: 6px 8px;">
+                        <h4 style="color: #1e3a8a; font-size: 13.5px; margin-bottom: 2px;">1. L'Actionneur</h4>
+                        <p style="font-size: 13.5px; line-height: 1.35;">Identifier précisément l'organe moteur qui produit le mouvement dans le système.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #b45309; padding: 6px 8px;">
+                        <h4 style="color: #b45309; font-size: 13.5px; margin-bottom: 2px;">2. L'Énergie Reçue</h4>
+                        <p style="font-size: 13.5px; line-height: 1.35;">Indiquer la forme d'énergie d'alimentation consommée pour créer ce mouvement.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #16a34a; padding: 6px 8px;">
+                        <h4 style="color: #16a34a; font-size: 13.5px; margin-bottom: 2px;">3. L'Action Réalisée</h4>
+                        <p style="font-size: 13.5px; line-height: 1.35;">Employer le verbe d'action technique caractérisant le déplacement de la charge.</p>
+                    </div>
+                    <div class="mini-card" style="border-top: 3px solid #0284c7; padding: 6px 8px;">
+                        <h4 style="color: #0284c7; font-size: 13.5px; margin-bottom: 2px;">4. La Matière d'Œuvre</h4>
+                        <p style="font-size: 13.5px; line-height: 1.35;">Nommer expressément le produit extérieur transporté et sa destination finale.</p>
+                    </div>
+                </div>
+
+                <div style="background: #f1f5f9; border-left: 3.5px solid #4338ca; padding: 6px 10px; margin-top: 6px; font-size: 13.5px; color: #334155; line-height: 1.4;">
+                    <strong>Exemple de structure sur un autre système (ex. monte-charge d'atelier) :</strong><br>
+                    <em>« Le treuil motorisé reçoit de l'énergie électrique pour lever et transférer les palettes de matériel vers l'étage supérieur. »</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 4 -->
+        <div class="page-footer">
+            <span>Bac Pro MELEC — Fiche Synthèse Ressource Construction Mécanique</span>
+            <span>Page 4 / 4 — Indice de Protection IP & Guide de Rédaction Technique</span>
+        </div>
+    </div>
+
+</body>
+</html>
